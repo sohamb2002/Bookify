@@ -1,33 +1,41 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Register.css'; // Import custom CSS for styling
 import { useFirebase } from '../context/firebase';
 import { useNavigate } from 'react-router-dom';
+
 function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // To handle loading state
 
-const [email, setEmail]=useState("")
-const [password, setPassword]=useState("")
+  const firebase = useFirebase();
+  const navigate = useNavigate();
 
-
-const firebase=useFirebase();
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted with:", email, password);
-    await firebase.signUp(email, password);
-};
-const navigate=useNavigate();
+    setLoading(true); // Set loading state to true
 
-useEffect(()=>{
-    if(firebase.isLoggedIn)
-    {
-    
-    navigate("/");
+    try {
+      console.log("Form submitted with:", email, password);
+      await firebase.signUp(email, password);
+      
+      // After successful sign up, navigate to the listing page
+      navigate("/listings");
+    } catch (error) {
+      console.error("Error signing up:", error);
+      // Handle error if needed, e.g., display error message
+    } finally {
+      setLoading(false); // Reset loading state
     }
-    },[firebase,navigate])
-    
-    
+  };
 
+  useEffect(() => {
+    if (firebase.isLoggedIn) {
+      navigate("/");
+    }
+  }, [firebase.isLoggedIn, navigate]);
 
   return (
     <div className="container register-container">
@@ -40,7 +48,8 @@ useEffect(()=>{
               type="email" 
               placeholder="Enter email" 
               className="form-control"
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <Form.Text className="text-muted">
               We will never share your email with anyone else.
@@ -53,14 +62,18 @@ useEffect(()=>{
               type="password" 
               placeholder="Password" 
               className="form-control"
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </Form.Group>
 
-        
-
-          <Button variant="primary" type="submit" className="submit-button">
-         Create Account
+          <Button 
+            variant="primary" 
+            type="submit" 
+            className="submit-button"
+            disabled={loading} // Disable button when loading
+          >
+            {loading ? "Creating Account..." : "Create Account"}
           </Button>
         </Form>
       </div>
