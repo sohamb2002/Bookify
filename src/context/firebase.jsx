@@ -7,13 +7,14 @@ import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { signOut } from 'firebase/auth';
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCQp8SWJdpi8836e3yHTbRHTynwUz-rMw8",
-  authDomain: "bookify-44b26.firebaseapp.com",
-  projectId: "bookify-44b26",
-  storageBucket: "bookify-44b26.appspot.com",
-  messagingSenderId: "381050508508",
-  appId: "1:381050508508:web:b00c5699c06532a452d019"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
+
 
 // Initialize Firebase
 const FirebaseApp = initializeApp(firebaseConfig);
