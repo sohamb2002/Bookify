@@ -1,0 +1,17 @@
+/* index.css */
+
+/* Ensure full height for the HTML and body elements */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure the App component takes full height and centers its content */
+.app {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f4f8; /* Light background color */
+}

@@ -1,0 +1,70 @@
+/* General Container Styles */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures full viewport height */
+    width: 100vw; /* Ensures full viewport width */
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  }
+  /* Global Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Card Styles */
+  .register-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* Title Styles */
+  .register-title {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Form Styles */
+  .register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+  }
+  
+  .form-check {
+    margin-bottom: 1rem;
+  }
+  
+  .submit-button {
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background: #0056b3;
+  }
+  
